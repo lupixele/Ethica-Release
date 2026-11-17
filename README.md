@@ -31,7 +31,7 @@ Get the latest installer from the [GitHub Releases page](https://github.com/lupi
 
 | File | Version | Platform | SHA-256 Checksum |
 |---|---|---|---|
-| [`Ethica-Setup-1.0.2.exe`](https://github.com/lupixele/Ethica-Release/releases/download/v1.0.2/Ethica-Setup-1.0.2.exe) | **v1.0.2** | Windows 10/11 x64 | `271073A4C07649DC0D897874DBBBCD23E027531797848F0D6E84385B97E059F5` |
+| [`Ethica-Setup-1.0.3.exe`](https://github.com/lupixele/Ethica-Release/releases/download/v1.0.3/Ethica-Setup-1.0.3.exe) | **v1.0.3** | Windows 10/11 x64 | `C2D94D1877245E6C26348F6B123AA440A5250A7DECAA0733142C5DBD81572B60` |
 
 > *The installer is also tracked directly in the root of this release repository.*
 
@@ -92,7 +92,7 @@ The underlying session is maintained invisibly through Windows Terminal Services
 4. Sign into that account once on your PC to let Windows initialize its profile directory, then sign back out to your primary account.
 
 ### 3. Install Ethica
-1. Download and run [`Ethica-Setup-1.0.2.exe`](https://github.com/lupixele/Ethica-Release/releases/latest).
+1. Download and run [`Ethica-Setup-1.0.3.exe`](https://github.com/lupixele/Ethica-Release/releases/latest).
 2. The installer automatically registers `EthicaService`, provisions firewall rules for streaming ports (`56587`, `56588`, `56500`), and stages the virtual display driver.
 
 ### 4. Start Streaming
@@ -128,7 +128,11 @@ Configuration is stored in `%ProgramData%\Ethica\ethica.json` and is preserved a
 
 ## 📋 Release Notes
 
-### v1.0.2 (Current)
+### v1.0.3 (Current)
+- **Firewall Rule Synchronisation**: Updated installer firewall allow rules to cover dedicated Apollo streaming ports (`56580-56595`) and the control API port (`56500`).
+- **Install-Time Engine State Purge**: Added automated cleanup of stale engine state, personal configuration files, and old certificates during installation/upgrade so existing installs upgrade impartially.
+
+### v1.0.2
 - **Resolved "The Stub Received Bad Data" RPC Errors**: Eliminated legacy RemoteFX registry overrides (`fEnableHardwareGraphicsCapture` and `fEnableRemoteFXAdv`) and `UserPreferencesMask` writes that caused explorer RPC stub data corruption on file/app launches in modern Windows 10/11 (build 26100+). Installer actively purges these legacy keys.
 - **Eliminated Duo Manager Conflicts**: Relocated Apollo engine ports to `56587`, `56585`, and `56588` to avoid colliding with Duo Manager's default ports (`47984`, `47990`). EthicaService process supervision now strictly targets `apollo.exe` and will never kill Duo Manager's `sunshine.exe` background processes.
 - **Virtual Display Revert on Disconnect**: Enabled `dd_config_revert_on_disconnect` so SudoVDA virtual displays release immediately upon session termination, preventing orphan displays from locking resources.
