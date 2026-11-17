@@ -1,0 +1,11 @@
+# Ethica Release Repository .gitignore
+*.log
+*.tmp
+*.bak
+.vs/
+.vscode/
+bin/
+obj/
+*.user
+Thumbs.db
+Desktop.ini
