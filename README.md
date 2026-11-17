@@ -31,7 +31,7 @@ Get the latest installer from the [GitHub Releases page](https://github.com/lupi
 
 | File | Version | Platform | SHA-256 Checksum |
 |---|---|---|---|
-| [`Ethica-Setup-1.0.3.exe`](https://github.com/lupixele/Ethica-Release/releases/download/v1.0.3/Ethica-Setup-1.0.3.exe) | **v1.0.3** | Windows 10/11 x64 | `C2D94D1877245E6C26348F6B123AA440A5250A7DECAA0733142C5DBD81572B60` |
+| [`Ethica-Setup-1.0.4.exe`](https://github.com/lupixele/Ethica-Release/releases/download/v1.0.4/Ethica-Setup-1.0.4.exe) | **v1.0.4** | Windows 10/11 x64 | `CD837D540371FA6ADE6426B825470512B426E00E6113E4E996806F63C90111A2` |
 
 > *The installer is also tracked directly in the root of this release repository.*
 
@@ -92,7 +92,7 @@ The underlying session is maintained invisibly through Windows Terminal Services
 4. Sign into that account once on your PC to let Windows initialize its profile directory, then sign back out to your primary account.
 
 ### 3. Install Ethica
-1. Download and run [`Ethica-Setup-1.0.3.exe`](https://github.com/lupixele/Ethica-Release/releases/latest).
+1. Download and run [`Ethica-Setup-1.0.4.exe`](https://github.com/lupixele/Ethica-Release/releases/latest).
 2. The installer automatically registers `EthicaService`, provisions firewall rules for streaming ports (`56587`, `56588`, `56500`), and stages the virtual display driver.
 
 ### 4. Start Streaming
@@ -128,7 +128,13 @@ Configuration is stored in `%ProgramData%\Ethica\ethica.json` and is preserved a
 
 ## 📋 Release Notes
 
-### v1.0.3 (Current)
+### v1.0.4 (Current)
+- **Resolved "Remember Password" App Crash**: Granted full write permissions on `%ProgramData%\Ethica` via Inno Setup and `icacls`, and added defensive exception handling in `ConfigStore.Save` to ensure standard non-elevated desktop accounts can safely store settings without permission errors.
+- **Bundled OpenSSL Legacy Provider (`legacy.dll`)**: Bundled `ossl-modules/legacy.dll` with FreeRDP and set `OPENSSL_MODULES` to support MD4 hashing for Windows NLA / NTLM authentication, eliminating `ERRCONNECT_LOGON_FAILURE`.
+- **Primary vs. Secondary Account Guard**: The UI now actively prevents users from selecting the active foreground Windows account (which causes immediate RDP session collision and error 131092) and guides the user to select their dedicated secondary background account.
+- **Friendly Exit Codes**: Mapped error `131092` to a clear, actionable authentication diagnostic in the dashboard.
+
+### v1.0.3
 - **Firewall Rule Synchronisation**: Updated installer firewall allow rules to cover dedicated Apollo streaming ports (`56580-56595`) and the control API port (`56500`).
 - **Install-Time Engine State Purge**: Added automated cleanup of stale engine state, personal configuration files, and old certificates during installation/upgrade so existing installs upgrade impartially.
 
