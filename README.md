@@ -31,7 +31,7 @@ Get the latest installer from the [GitHub Releases page](https://github.com/lupi
 
 | File | Version | Platform | SHA-256 Checksum |
 |---|---|---|---|
-| [`Ethica-Setup-1.0.5.exe`](https://github.com/lupixele/Ethica-Release/releases/download/v1.0.5/Ethica-Setup-1.0.5.exe) | **v1.0.5** | Windows 10/11 x64 | `49B520789988375B624D94B811EAEA99BBBA097E165AC9628452EC2C72EDF558` |
+| [`Ethica-Setup-1.0.5.exe`](https://github.com/lupixele/Ethica-Release/releases/download/v1.0.5/Ethica-Setup-1.0.5.exe) | **v1.0.5** | Windows 10/11 x64 | `6B1FD14DE433D94852B344E8C2C7044560CB8AE6145AE9D9E41A8469F753EB8B` |
 
 > *The installer is also tracked directly in the root of this release repository.*
 
