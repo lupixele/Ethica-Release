@@ -31,7 +31,7 @@ Get the latest installer from the [GitHub Releases page](https://github.com/lupi
 
 | File | Version | Platform | SHA-256 Checksum |
 |---|---|---|---|
-| [`Ethica-Setup-1.0.4.exe`](https://github.com/lupixele/Ethica-Release/releases/download/v1.0.4/Ethica-Setup-1.0.4.exe) | **v1.0.4** | Windows 10/11 x64 | `CD837D540371FA6ADE6426B825470512B426E00E6113E4E996806F63C90111A2` |
+| [`Ethica-Setup-1.0.5.exe`](https://github.com/lupixele/Ethica-Release/releases/download/v1.0.5/Ethica-Setup-1.0.5.exe) | **v1.0.5** | Windows 10/11 x64 | `49B520789988375B624D94B811EAEA99BBBA097E165AC9628452EC2C72EDF558` |
 
 > *The installer is also tracked directly in the root of this release repository.*
 
@@ -128,7 +128,12 @@ Configuration is stored in `%ProgramData%\Ethica\ethica.json` and is preserved a
 
 ## 📋 Release Notes
 
-### v1.0.4 (Current)
+### v1.0.5 (Current)
+- **Automated Teardown on Uninstall**: The uninstaller now completely purges all virtual display adapters (`ROOT\DISPLAY\0000`), uninstalls driver packages (`sudovda.inf`) from the Windows Driver Store via `pnputil`, removes all `*Ethica*` firewall rules, cleans up `%ProgramData%\Ethica`, and automatically restarts Windows Explorer to cleanly flush DWM and RPC stub caches. Zero orphan artifacts remain after uninstallation.
+- **Permanent Elimination of `DWMFRAMEINTERVAL`**: Removed legacy registry injection from runtime session launch and added proactive purge of `DWMFRAMEINTERVAL` across Terminal Server WinStations and RDP-Tcp keys, permanently eliminating the "The stub received bad data" (`RPC_S_INVALID_STUB_DATA` 1783) error on Windows 11.
+- **Enhanced Process & Session Cleanup**: Uninstallation terminates all running background streaming engine and FreeRDP processes before removing files, preventing locked binaries.
+
+### v1.0.4
 - **Resolved "Remember Password" App Crash**: Granted full write permissions on `%ProgramData%\Ethica` via Inno Setup and `icacls`, and added defensive exception handling in `ConfigStore.Save` to ensure standard non-elevated desktop accounts can safely store settings without permission errors.
 - **Bundled OpenSSL Legacy Provider (`legacy.dll`)**: Bundled `ossl-modules/legacy.dll` with FreeRDP and set `OPENSSL_MODULES` to support MD4 hashing for Windows NLA / NTLM authentication, eliminating `ERRCONNECT_LOGON_FAILURE`.
 - **Primary vs. Secondary Account Guard**: The UI now actively prevents users from selecting the active foreground Windows account (which causes immediate RDP session collision and error 131092) and guides the user to select their dedicated secondary background account.
